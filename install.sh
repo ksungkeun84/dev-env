@@ -26,3 +26,7 @@ echo "export PATH=$HOME/.bin/node-v14.17.1-linux-x64/bin:$HOME/.bin/nvm:$PATH" >
 pip3 install pynvim --user
 npm i -g pyright
 
+sudo apt install ripgrep
+# wget https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+# dpkg -i ripgrep_13.0.0_amd64.deb
+# rm ripgrep_13.0.0_amd64.deb
