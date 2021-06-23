@@ -189,3 +189,9 @@ let g:vimspector_enable_mappings = 'HUMAN'
 
 nmap <silent> <buffer> <LocalLeader>di <Plug>VimspectorBalloonEval
 xmap <silent> <buffer> <LocalLeader>di <Plug>VimspectorBalloonEval
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 'pixelneo/vim-python-docstring'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> doc      :Docstring<CR>
