@@ -58,7 +58,12 @@ set shortmess+=c
 set signcolumn=yes
 set updatetime=750
 let mapleader=","
-filetype plugin indent on
+if has("syntax")
+syntax on
+endif
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
 if (has("termguicolors"))
 	set termguicolors
 endif
@@ -187,8 +192,10 @@ let test#neovim#term_position = 'vertical'
 " https://github.com/puremourning/vimspector#human-mode
 let g:vimspector_enable_mappings = 'HUMAN'
 
-nmap <silent> <buffer> <LocalLeader>di <Plug>VimspectorBalloonEval
-xmap <silent> <buffer> <LocalLeader>di <Plug>VimspectorBalloonEval
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
