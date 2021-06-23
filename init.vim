@@ -23,6 +23,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'nvim-lua/completion-nvim'
   Plug 'janko/vim-test'
   Plug 'puremourning/vimspector'
+  Plug 'pixelneo/vim-python-docstring'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,7 +134,10 @@ let g:neoformat_only_msg_on_error = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " junegunn/fzf.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader><leader> :GFiles<CR>
+ " open buffers
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>gf :GFiles<CR>
+nnoremap <leader>gf? :GFiles?<CR>
 nnoremap <leader>ff :Rg<CR>
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path(
       \ "find . -path '*/\.*' -prune -o -print \| sed '1d;s:^..::'",
