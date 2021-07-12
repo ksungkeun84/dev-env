@@ -24,6 +24,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'janko/vim-test'
   Plug 'puremourning/vimspector'
   Plug 'pixelneo/vim-python-docstring'
+  Plug 'will133/vim-dirdiff'
+
 
 call plug#end()
 
