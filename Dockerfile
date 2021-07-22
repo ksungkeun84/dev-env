@@ -4,12 +4,17 @@ MAINTAINER Sungkeun Kim <ksungkeun84@tamu.edu>
 RUN apt-get update
 
 ######################################
-# Home Directory
+# Add user
 ######################################
+#RUN adduser --disabled-password --gecos '' sungkeun
+#RUN adduser sungkeun sudo
+#RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+#USER sungkeun
+
 RUN mkdir /home/sungkeun
 VOLUME /home/sungkeun
 WORKDIR /home/sungkeun
-ENV HOME=/home/sungkeun
+ENV HOME /home/sungkeun
 
 ######################################
 # nodejs
@@ -32,7 +37,10 @@ RUN apt-get install -y pip
 RUN apt-get install -y curl
 RUN apt-get install -y wget
 RUN apt-get install -y bash
+RUN apt-get install -y zsh
 RUN apt-get install -y git
+RUN apt-get install -y bzip2
+RUN apt-get install -y sudo
 
 ######################################
 # Neo Vim 
@@ -45,7 +53,13 @@ RUN pip3 install pynvim
 # for /dev/fuse
 RUN apt-get install -y fuse
 
+######################################
+# apt-get clean
+######################################
 RUN apt-get clean
+RUN apt-get autoremove 
+RUN apt-get clean 
+RUN apt-get autoclean
 
-CMD bash
+CMD zsh
 

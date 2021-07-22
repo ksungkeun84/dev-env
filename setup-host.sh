@@ -9,6 +9,8 @@ curl -fLo $DOCKER_HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs ht
 
 mkdir -p $DOCKER_HOME/.config/nvim 
 cp $PWD/init.vim $DOCKER_HOME/.config/nvim/init.vim
-cp $PWD/.bashrc $DOCKER_HOME/.bashrc
+cp $PWD/.zshrc $DOCKER_HOME/.zshrc
 
 
+# anaconda
+curl -fLo $DOCKER_HOME/Anaconda3-5.0.1-Linux-x86_64.sh https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
