@@ -67,10 +67,11 @@ RUN apt-get autoclean
 ######################################
 # Add user
 ######################################
-RUN adduser --disabled-password --gecos '' ubuntu
-RUN adduser ubuntu sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-#USER ubuntu
+#RUN adduser --disabled-password --gecos '' ubuntu
+#RUN adduser ubuntu sudo
+#RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN mkdir /home/ubuntu
+ENV HOME /home/ubuntu
 
 CMD bash
 
