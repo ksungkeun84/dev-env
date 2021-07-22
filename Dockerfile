@@ -3,18 +3,13 @@ MAINTAINER Sungkeun Kim <ksungkeun84@tamu.edu>
 
 RUN apt-get update
 
-######################################
-# Add user
-######################################
-#RUN adduser --disabled-password --gecos '' sungkeun
-#RUN adduser sungkeun sudo
-#RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-#USER sungkeun
-
-RUN mkdir /home/sungkeun
-VOLUME /home/sungkeun
-WORKDIR /home/sungkeun
-ENV HOME /home/sungkeun
+#RUN mkdir /home/sungkeun
+#VOLUME /home/sungkeun
+#WORKDIR /home/sungkeun
+#ENV HOME /home/sungkeun
+#VOLUME /root
+#WORKDIR /root
+#ENV HOME /root
 
 ######################################
 # nodejs
@@ -37,7 +32,6 @@ RUN apt-get install -y pip
 RUN apt-get install -y curl
 RUN apt-get install -y wget
 RUN apt-get install -y bash
-RUN apt-get install -y zsh
 RUN apt-get install -y git
 RUN apt-get install -y bzip2
 RUN apt-get install -y sudo
@@ -45,6 +39,15 @@ RUN apt-get install -y sudo
 ######################################
 # Neo Vim 
 ######################################
+#ADD nvim.appimage /usr/bin/nvim
+#RUN chmod +x /usr/bin/nvim
+#RUN echo "alias vi=nvim" >> /home/ubuntu/.bashrc
+
+#RUN mkdir -p .local/share/nvim/site/autoload/
+#ADD plug.vim .local/share/nvim/site/autoload/plug.vim
+
+#RUN mkdir -p .config/nvim 
+#ADD init.vim .config/nvim/init.vim
 RUN apt-get install -y vim-scripts 
 
 # plug.vim
@@ -61,5 +64,13 @@ RUN apt-get autoremove
 RUN apt-get clean 
 RUN apt-get autoclean
 
-CMD zsh
+######################################
+# Add user
+######################################
+RUN adduser --disabled-password --gecos '' ubuntu
+RUN adduser ubuntu sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+#USER ubuntu
+
+CMD bash
 
