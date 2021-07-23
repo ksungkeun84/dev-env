@@ -1,6 +1,9 @@
 FROM ubuntu:20.04
 MAINTAINER Sungkeun Kim <ksungkeun84@tamu.edu>
 
+# Disable prompt during package installation
+ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update
 
 #RUN mkdir /home/sungkeun
@@ -55,6 +58,14 @@ RUN pip3 install pynvim
 
 # for /dev/fuse
 RUN apt-get install -y fuse
+
+######################################
+# Miniconda
+######################################
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN mkdir /root/.conda
+RUN bash Miniconda3-latest-Linux-x86_64.sh -b
+
 
 ######################################
 # apt-get clean
