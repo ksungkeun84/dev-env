@@ -1,0 +1,3 @@
+[submodule "nvim-setup"]
+	path = nvim-setup
+	url = https://github.com/ksungkeun84/nvim-setup

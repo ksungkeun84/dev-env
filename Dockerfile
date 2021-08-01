@@ -13,14 +13,33 @@ RUN apt-get update
 #VOLUME /root
 #WORKDIR /root
 #ENV HOME /root
+######################################
+# Utilities
+######################################
+RUN apt-get update
+RUN apt-get install -y build-essential 
+RUN apt-get install -y curl
+RUN apt-get install -y wget
+RUN apt-get install -y bash
+RUN apt-get install -y git
+RUN apt-get install -y bzip2
+RUN apt-get install -y sudo
+RUN apt-get install -y gdb
 
 ######################################
 # nodejs
 ######################################
 RUN apt-get update
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get install -yq nodejs npm 
 RUN apt-get install -y ripgrep
+
+
+#RUN curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
+#RUN sudo bash nodesource_setup.sh
+RUN apt-get install -yq nodejs 
+#RUN apt-get install -y libssl1.1=1.1.1f-1ubuntu2
+RUN apt-get install -yq npm 
+
 
 ######################################
 # Python
@@ -29,15 +48,6 @@ RUN apt-get install -y python python-dev
 RUN apt-get install -y python3.8 python3-dev
 RUN apt-get install -y pip
 
-######################################
-# Utilities
-######################################
-RUN apt-get install -y curl
-RUN apt-get install -y wget
-RUN apt-get install -y bash
-RUN apt-get install -y git
-RUN apt-get install -y bzip2
-RUN apt-get install -y sudo
 
 ######################################
 # Neo Vim 
