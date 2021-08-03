@@ -89,12 +89,14 @@ VOLUME /home/ubuntu
 ENV HOME /home/ubuntu
 
 COPY miniconda-gem5.yml /home/ubuntu
+COPY miniconda-ml.yml /home/ubuntu
 ENV PATH /root/miniconda3/bin:$PATH
 
 RUN cd /home/ubuntu
 RUN conda init bash
 RUN conda update conda
 RUN conda env create -f /home/ubuntu/miniconda-gem5.yml
+RUN conda env create -f /home/ubuntu/miniconda-ml.yml
 RUN conda clean --all -f --yes
 
 

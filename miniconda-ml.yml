@@ -1,0 +1,20 @@
+name: ml
+channels:
+  - defaults
+  - anaconda
+  - conda-forge
+dependencies:
+  - python=3.9
+  - numpy
+  - pydot
+  - pandas
+  - matplotlib
+  - seaborn
+  - tensorflow
+  - scikit-learn
+  - urllib3
+  - gitpython
+  - neovim
+  - six
+  - scons
+
