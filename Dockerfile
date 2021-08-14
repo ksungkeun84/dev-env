@@ -24,9 +24,14 @@ RUN apt-get install -y gdb
 ######################################
 RUN apt-get update
 ENV DEBIAN_FRONTEND=noninteractive
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 RUN apt-get install -y ripgrep
-RUN apt-get install -yq nodejs
-RUN apt-get install -yq npm
+RUN export NVM_DIR="$HOME/.nvm"
+RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+RUN [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
+RUN nvm install nodes
+#RUN apt-get install -yq nodejs
+#RUN apt-get install -yq npm
 
 
 ######################################

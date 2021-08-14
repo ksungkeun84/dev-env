@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo docker build . -t danguria/dev-env
+docker build . -t danguria/dev-env
