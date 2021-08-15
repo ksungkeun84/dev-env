@@ -18,20 +18,7 @@ RUN apt-get install -y git
 RUN apt-get install -y bzip2
 RUN apt-get install -y sudo
 RUN apt-get install -y gdb
-
-######################################
-# nodejs
-######################################
-RUN apt-get update
-ENV DEBIAN_FRONTEND=noninteractive
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 RUN apt-get install -y ripgrep
-RUN export NVM_DIR="$HOME/.nvm"
-RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-RUN [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
-RUN nvm install nodes
-#RUN apt-get install -yq nodejs
-#RUN apt-get install -yq npm
 
 
 ######################################
@@ -60,11 +47,14 @@ RUN apt-get install -y pip
 RUN apt-get install -y libprotobuf-dev 
 RUN apt-get install -y protobuf-compiler 
 RUN apt-get install -y libgoogle-perftools-dev
+RUN apt-get install -y libgoogle-perftools-dev
+RUN apt-get install -y python-six
 
 
 ######################################
 # Neo Vim
 ######################################
+RUN apt-get update
 RUN apt-get install -y vim-scripts
 
 # plug.vim
@@ -81,17 +71,24 @@ RUN mkdir /root/.conda
 RUN bash Miniconda3-latest-Linux-x86_64.sh -b
 
 
-######################################
-# apt-get clean
-######################################
-RUN apt-get clean
-RUN apt-get autoremove
-RUN apt-get clean
-RUN apt-get autoclean
-
 RUN mkdir /home/ubuntu
 VOLUME /home/ubuntu
 ENV HOME /home/ubuntu
+
+######################################
+# nodejs
+######################################
+#RUN apt-get update
+#ENV DEBIAN_FRONTEND=noninteractive
+#RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+#RUN export NVM_DIR="$HOME/.nvm"
+#ENV NVIM_DIR /home/ubuntu/.nvim
+#RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#RUN [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
+#RUN nvm install nodes
+#RUN apt-get install -yq nodejs
+#RUN apt-get install -yq npm
+
 
 COPY miniconda-gem5.yml /home/ubuntu
 COPY miniconda-ml.yml /home/ubuntu
@@ -103,6 +100,15 @@ RUN conda update conda
 RUN conda env create -f /home/ubuntu/miniconda-gem5.yml
 RUN conda env create -f /home/ubuntu/miniconda-ml.yml
 RUN conda clean --all -f --yes
+
+######################################
+# apt-get clean
+######################################
+RUN apt-get clean
+RUN apt-get autoremove
+RUN apt-get clean
+RUN apt-get autoclean
+
 
 
 CMD bash
