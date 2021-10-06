@@ -1,3 +1,6 @@
 [submodule "nvim-setup"]
 	path = nvim-setup
 	url = https://github.com/ksungkeun84/nvim-setup
+[submodule "python-cli-util"]
+	path = python-cli-util
+	url = https://github.com/ksungkeun84/python-cli-util
