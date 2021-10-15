@@ -1,3 +1,5 @@
+# Docker based Dev environment setup (NVim Enabled)
+![Docker based Dev environment setup (NVim Enabled)](https://github.com/ksungkeun84/dev-env/blob/master/dev-env-demo.gif)
 
 ## Setup dev-env
 Run the setup.py
