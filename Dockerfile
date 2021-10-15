@@ -70,10 +70,16 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 RUN mkdir /root/.conda
 RUN bash Miniconda3-latest-Linux-x86_64.sh -b
 
+COPY miniconda-gem5.yml /root
+COPY miniconda-ml.yml /root
+ENV PATH /root/miniconda3/bin:$PATH
 
-RUN mkdir /home/ubuntu
-VOLUME /home/ubuntu
-ENV HOME /home/ubuntu
+RUN cd /root
+RUN conda init bash
+RUN conda update conda
+RUN conda env create -f /root/miniconda-gem5.yml
+RUN conda env create -f /root/miniconda-ml.yml
+RUN conda clean --all -f --yes
 
 ######################################
 # nodejs
@@ -89,18 +95,6 @@ ENV HOME /home/ubuntu
 #RUN apt-get install -yq nodejs
 #RUN apt-get install -yq npm
 
-
-COPY miniconda-gem5.yml /home/ubuntu
-COPY miniconda-ml.yml /home/ubuntu
-ENV PATH /root/miniconda3/bin:$PATH
-
-RUN cd /home/ubuntu
-RUN conda init bash
-RUN conda update conda
-RUN conda env create -f /home/ubuntu/miniconda-gem5.yml
-RUN conda env create -f /home/ubuntu/miniconda-ml.yml
-RUN conda clean --all -f --yes
-
 ######################################
 # apt-get clean
 ######################################
@@ -109,7 +103,12 @@ RUN apt-get autoremove
 RUN apt-get clean
 RUN apt-get autoclean
 
-
+######################################
+# chmod to allow user to execute conda
+######################################
+RUN chmod +x /root
+RUN chmod +x /root/miniconda3
+RUN chmod +x -R /root/miniconda3/bin
 
 CMD bash
 

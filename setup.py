@@ -1,4 +1,4 @@
-
+#!/bin
 import argparse
 import importlib
 import sys
@@ -11,7 +11,17 @@ class Setup(PythonCLIBase):
         super().__init__(args)
 
     def setup(self):
-        cmd = 'cd nvim-setup; bash setup.sh -h ../docker-home -m docker'
+        # Git pull with submodule
+        cmd = 'git submodule update --init --recursive'
+        self.logger.info('Executing cmd: {0}'.format(cmd))
+        super().execute_cmd(cmd)
+
+        cmd = 'git submodule update --recursive --remote'
+        self.logger.info('Executing cmd: {0}'.format(cmd))
+        super().execute_cmd(cmd)
+
+        # Setup nvim
+        cmd = 'mkdir docker-home; cd nvim-setup; bash setup.sh -h ../docker-home -m docker'
         self.logger.info('Executing cmd: {0}'.format(cmd))
         super().execute_cmd(cmd)
 
@@ -29,7 +39,7 @@ if __name__ == '__main__':
     #        type=str, help="Path to llvm binaries", required=True)
     #parser.add_argument("-r", "--build-path",
     #        type=str, help="Path to build", required=True)
-    #parser.add_argument("-o", "--output-path",
+    #parser.add_argument("-c", "--output-path",
     #        type=str, help="Path to output of dot file", required=True)
 
     args = parser.parse_args()

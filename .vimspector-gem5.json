@@ -1,0 +1,29 @@
+{
+  "configurations": {
+    "gem5 - debug configuration": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "type":    "cppdbg",
+        "request": "launch",
+        "program": "${workspaceRoot}/build/X86_MESI_Two_Level/gem5.opt",
+        "args": [
+            "configs/example/se.py",
+            "--num-cpus=",
+            "--cpu-type=TimingSimpleCPU",
+            "--ruby",
+            "-c", "./test"
+        ],
+        "cwd": "${workspaceRoot}/build/X86_MESI_Two_Level",
+        //"environment": [
+        //  { "name": "VIMRUNTIME", "value": "${workspaceRoot}/runtime" }
+        //],
+        "externalConsole": true,
+        "stopAtEntry": true,
+        "MIMode": "lldb",
+        "logging": {
+          "engineLogging": false
+        }
+      }
+    }
+  }
+}

@@ -1,31 +1,25 @@
-cd dev-env
 
-## Git pull with submodule
+## Setup dev-env
+Run the setup.py
 
-git submodule update --init --recursive
+```console
+username@xxx: python setup.py
+```
 
-git submodule update --recursive --remote
+## Setup Nvim in dev-env docker
 
-## Setup nvim
+```console
+(host) username@xxx: ./docker-run.sh
+(docker) username@xxx: vi
+(command mode in vi) :PlugInstall
+```
 
-mkdir docker-home; cd nvim-setup; ./setup.sh -h ../docker-home -m docker
+## Initialize anaconda in dev-env docker
 
-(host) $> cd ..
-
-(host) $> ./docker-run.sh
-
-(docker) #> vi
-
-(docker) #> :PlugInstall
-
-## Initialize anaconda for gem5
-
-(docker) #> conda init bash
-
-(docker) #> exit
-
-(host) $> ./docker-run.sh
-
-(docker) #> conda activate gem5
-
-(gem5) #>
+```console
+(docker) username@xxx: conda init bash
+(docker) username@xxx: exit
+(host)   username@xxx: ./docker-run.sh
+(docker) username@xxx: conda activate gem5 
+(gem5)   username@xxx:
+```
