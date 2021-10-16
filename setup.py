@@ -2,24 +2,17 @@
 import argparse
 import importlib
 import sys
+import os
+# Git pull with submodule
+os.system('git submodule update --init --recursive')
 sys.path.append('python-cli-util')
 from PythonCLIBase import PythonCLIBase
-
 
 class Setup(PythonCLIBase):
     def __init__(self, args):
         super().__init__(args)
 
     def setup(self):
-        # Git pull with submodule
-        cmd = 'git submodule update --init --recursive'
-        self.logger.info('Executing cmd: {0}'.format(cmd))
-        super().execute_cmd(cmd)
-
-        cmd = 'git submodule update --recursive --remote'
-        self.logger.info('Executing cmd: {0}'.format(cmd))
-        super().execute_cmd(cmd)
-
         # Setup nvim
         cmd = 'mkdir docker-home; cd nvim-setup; bash setup.sh -h ../docker-home -m docker'
         self.logger.info('Executing cmd: {0}'.format(cmd))
