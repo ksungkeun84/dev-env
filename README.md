@@ -5,7 +5,7 @@
 Run the setup.py
 
 ```console
-username@xxx: python setup.py
+username@xxx: python3 setup.py
 ```
 
 ## Setup Nvim in dev-env docker
