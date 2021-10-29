@@ -125,5 +125,29 @@ RUN chmod +x /root
 RUN chmod +x /root/miniconda3
 RUN chmod +x -R /root/miniconda3/bin
 
+######################################
+# Install older version of gcc/g++
+######################################
+RUN echo "deb http://dk.archive.ubuntu.com/ubuntu/ xenial main" >> /etc/apt/sources.list
+RUN echo "deb http://dk.archive.ubuntu.com/ubuntu/ xenial universe">> /etc/apt/sources.list
+RUN sudo apt update
+RUN apt-get install -y gcc-4.7 g++-4.7
+
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 1
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 1
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.7 2
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.7 2
+RUN echo 2 | update-alternatives --config gcc
+RUN echo 2 | update-alternatives --config g++
+
+
+######################################
+# Assigne 
+######################################
+RUN touch /etc/sudoers.d/custom
+RUN echo "sungkeun ALL=(ALL) ALL" >> /etc/sudoers.d/custom
+RUN echo "vrc ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/custom
+RUN echo "jp53456 ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/custom
+
 CMD bash
 
