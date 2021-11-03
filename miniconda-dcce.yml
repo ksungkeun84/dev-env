@@ -16,4 +16,6 @@ dependencies:
   - scons
   - graphviz
   - python-graphviz
+  - rich
+  - pyfiglet
 

@@ -90,7 +90,10 @@ ENV PATH /root/miniconda3/bin:$PATH
 
 RUN cd /root
 RUN conda init bash
-RUN conda update conda
+RUN conda install -y  conda-build
+RUN conda update  -y  conda
+RUN conda update  -y  conda-build
+
 RUN conda env create -f /root/miniconda-gem5.yml
 RUN conda env create -f /root/miniconda-dcce.yml
 RUN conda env create -f /root/miniconda-ml.yml
@@ -154,6 +157,14 @@ RUN echo "jp53456 ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/cust
 ######################################
 #RUN echo 0 > /proc/sys/kernel/yama/ptrace_scope
 #RUN chmod a+w /proc/sys/kernel/yama/ptrace_scope
+
+######################################
+# For pypi packaging
+######################################
+#RUN pip3 install --upgrade pip3
+RUN pip3 install --upgrade build
+RUN pip3 install --upgrade twine
+
 
 CMD bash
 

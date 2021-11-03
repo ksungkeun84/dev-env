@@ -17,4 +17,5 @@ dependencies:
   - neovim
   - six
   - scons
-
+  - rich
+  - pyfiglet

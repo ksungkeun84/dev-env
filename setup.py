@@ -3,14 +3,14 @@ import argparse
 import importlib
 import sys
 import os
-# Git pull with submodule
-os.system('git submodule update --init --recursive')
-sys.path.append('python-cli-util')
-from PythonCLIBase import PythonCLIBase
+from pyclibase import pyclibase
 
-class Setup(PythonCLIBase):
+pyclibase.clear_screen()
+pyclibase.print_title('Dev Env')
+
+class Setup(pyclibase.pyclibase):
     def __init__(self, args):
-        super().__init__(args)
+        super().__init__(args, 'dev-env setup')
 
     def setup(self):
         # Setup nvim
@@ -27,13 +27,6 @@ def main(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
             description="DevEnv Setup program")
-
-    #parser.add_argument("-l", "--llvm-path",
-    #        type=str, help="Path to llvm binaries", required=True)
-    #parser.add_argument("-r", "--build-path",
-    #        type=str, help="Path to build", required=True)
-    #parser.add_argument("-c", "--output-path",
-    #        type=str, help="Path to output of dot file", required=True)
 
     args = parser.parse_args()
     main(args)

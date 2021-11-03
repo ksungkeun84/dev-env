@@ -1,0 +1,44 @@
+{
+  "configurations": {
+    "Launch": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "request": "launch",
+        "stopOnEntry": true,
+        "program": "./a.out",
+        "args": [],
+        "cwd": "./",
+        "environment": [],
+        "externalConsole": true,
+        "MIMode": "gdb"
+      }
+    },
+    "Attach": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "request": "attach",
+        "stopOnEntry": true,
+        "program": "./a.out",
+        "MIMode": "gdb"
+      }
+    }
+  }
+}
+
+//{
+//  "configurations": {
+//    "<name>: Launch": {
+//      "adapter": "debugpy",
+//      "configuration": {
+//        "name": "Launch",
+//        "type": "python",
+//        "request": "launch",
+//        "python": "/home/sungkeun/anaconda3/envs/machine-learning-study/bin/python",
+//        "stopOnEntry": true,
+//        "console": "externalTerminal",
+//        "debugOptions": [],
+//        "program": "./13.k-means-clustering-example.py"
+//      }
+//    }
+//  }
+//}
