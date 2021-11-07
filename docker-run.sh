@@ -1,11 +1,17 @@
 #!/bin/bash
+DOCKER_HOME='docker-home'
+if [ ! -d "$DOCKER_HOME" ]; then
+    mkdir $DOCKER_HOME
+    cp setup.py $DOCKER_HOME
+fi
 username=`whoami`
 docker run --rm -i -t \
     --privileged \
     --user $UID:$GID \
     --workdir="/home/$USER" \
     --volume $HOME:/home/${username}/host \
-    --volume $PWD/docker-home:/home/${username} \
+    --volume $PWD:/home/${username}/dev-env \
+    --volume $PWD/$DOCKER_HOME:/home/${username} \
     --volume="/etc/group:/etc/group:ro" \
     --volume="/etc/passwd:/etc/passwd:ro" \
     --volume="/etc/shadow:/etc/shadow:ro" \

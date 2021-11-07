@@ -3,30 +3,93 @@ import argparse
 import importlib
 import sys
 import os
+from typing import List
 from pyclibase import pyclibase
 
-pyclibase.clear_screen()
-pyclibase.print_title('Dev Env')
+program_name = 'Dev Env'
+pyclibase.print_title('Dev Env', 'DevEnv')
 
 class Setup(pyclibase.pyclibase):
-    def __init__(self, args):
-        super().__init__(args, 'dev-env setup')
+    def __init__(self, args, program_name):
+        super().__init__(args, program_name)
 
     def setup(self):
-        # Setup nvim
-        cmd = 'mkdir docker-home; cd nvim-setup; bash setup.sh -h ../docker-home -m docker'
-        self.logger.info('Executing cmd: {0}'.format(cmd))
+
+        dev_env = f'{self.args.dev_env_dir}'
+
+        # download nvim
+        cmd = f'curl -fLo $HOME/.bin/nvim.appimage --create-dirs  https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage; chmod a+x $HOME/.bin/nvim.appimage'
+        super().execute_cmd(cmd)
+
+        # install plug.vim
+        cmd = f'curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+        super().execute_cmd(cmd)
+
+        cmd = f'mkdir -p $HOME/.config/nvim; cp {dev_env}/init.vim $HOME/.config/nvim/init.vim'
+        super().execute_cmd(cmd)
+
+        cmd = f'cp {dev_env}/.bashrc $HOME/.bashrc'
+        super().execute_cmd(cmd)
+
+        cmd = 'wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh'
+        super().execute_cmd(cmd)
+
+        cmd = 'bash Miniconda3-latest-Linux-x86_64.sh -b'
+        super().execute_cmd(cmd)
+
+        cmd = f'miniconda3/bin/conda env create -f {dev_env}/miniconda-gem5.yml'
+        super().execute_cmd(cmd)
+        cmd = f'miniconda3/bin/conda env create -f {dev_env}/miniconda-dcce.yml'
+        super().execute_cmd(cmd)
+        cmd = f'miniconda3/bin/conda env create -f {dev_env}/miniconda-ml.yml'
+        super().execute_cmd(cmd)
+
+        cmd = f'miniconda3/bin/conda init bash'
+        super().execute_cmd(cmd)
+
+        print("Exiting the docker-container... please login gain")
+        cmd = f'exit'
         super().execute_cmd(cmd)
 
 
-def main(args):
-    setup = Setup(args)
-    setup.setup()
+def setup(args, cli):
+    cli.setup()
 
+def main(argv: List[str] = None):
+    parser = argparse.ArgumentParser(prog=program_name, description='...description...')
+    parser.set_defaults(func=lambda x: parser.print_help())
+    subparsers = parser.add_subparsers(title='commands')
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-            description="DevEnv Setup program")
+    ##############################################################################
+    # build command
+    ##############################################################################
+    parser_setup = subparsers.add_parser(
+        'setup',
+        help='...',
+        description="..."
+    )
+    parser_setup.set_defaults(func=setup)
+    parser_setup.add_argument(
+        '--dev-env-dir',
+        type = str,
+        default='./dev-env',
+        help = '...'
+    )
 
-    args = parser.parse_args()
-    main(args)
+    # Execute the user command
+    try:
+        anyArgs = sys.argv[1:] != list()
+        if anyArgs:
+            args = parser.parse_args(argv)
+            cli = Setup(args, program_name)
+            args.func(args, cli)
+        else:
+            # What purpose?
+            parser.print_help()
+    # Handle Ctrl-C gracefully
+    except KeyboardInterrupt:
+        print(f"{argv}{os.linesep}")
+        sys.exit(0)
+
+if __name__ == "__main__":
+  sys.exit(main())

@@ -38,8 +38,18 @@ RUN apt-get install -y graphviz
 # Python
 ######################################
 RUN apt-get install -y python python-dev
-RUN apt-get install -y python3.8 python3-dev
+RUN apt-get install -y python3 python3-dev
 RUN apt-get install -y pip
+
+######################################
+# For pypi packaging
+######################################
+RUN pip3 install --upgrade build
+RUN pip3 install --upgrade twine
+RUN pip3 install rich
+RUN pip3 install pyfiglet
+RUN pip3 install pyclibase
+
 
 ######################################
 # gem5
@@ -53,10 +63,7 @@ RUN apt-get install -y libprotobuf-dev
 RUN apt-get install -y protobuf-compiler 
 RUN apt-get install -y libprotoc-dev 
 RUN apt-get install -y libgoogle-perftools-dev 
-RUN apt-get install -y swig python-dev 
-RUN apt-get install -y python 
-RUN apt-get install -y python3.8 python3-dev
-RUN apt-get install -y pip
+RUN apt-get install -y swig
 RUN apt-get install -y libprotobuf-dev 
 RUN apt-get install -y protobuf-compiler 
 RUN apt-get install -y libgoogle-perftools-dev
@@ -75,29 +82,6 @@ RUN pip3 install pynvim
 
 # for /dev/fuse
 RUN apt-get install -y fuse
-
-######################################
-# Miniconda
-######################################
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-RUN mkdir /root/.conda
-RUN bash Miniconda3-latest-Linux-x86_64.sh -b
-
-COPY miniconda-gem5.yml /root
-COPY miniconda-dcce.yml /root
-COPY miniconda-ml.yml /root
-ENV PATH /root/miniconda3/bin:$PATH
-
-RUN cd /root
-RUN conda init bash
-RUN conda install -y  conda-build
-RUN conda update  -y  conda
-RUN conda update  -y  conda-build
-
-RUN conda env create -f /root/miniconda-gem5.yml
-RUN conda env create -f /root/miniconda-dcce.yml
-RUN conda env create -f /root/miniconda-ml.yml
-RUN conda clean --all -f --yes
 
 ######################################
 # nodejs
@@ -120,13 +104,6 @@ RUN apt-get clean
 RUN apt-get autoremove
 RUN apt-get clean
 RUN apt-get autoclean
-
-######################################
-# chmod to allow user to execute conda
-######################################
-RUN chmod +x /root
-RUN chmod +x /root/miniconda3
-RUN chmod +x -R /root/miniconda3/bin
 
 ######################################
 # Install older version of gcc/g++
@@ -157,13 +134,6 @@ RUN echo "jp53456 ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/cust
 ######################################
 #RUN echo 0 > /proc/sys/kernel/yama/ptrace_scope
 #RUN chmod a+w /proc/sys/kernel/yama/ptrace_scope
-
-######################################
-# For pypi packaging
-######################################
-#RUN pip3 install --upgrade pip3
-RUN pip3 install --upgrade build
-RUN pip3 install --upgrade twine
 
 
 CMD bash

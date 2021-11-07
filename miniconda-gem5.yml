@@ -3,6 +3,7 @@ channels:
   - defaults
   - anaconda
   - conda-forge
+  - ksungkeun84
 dependencies:
   - python=2.7
   - numpy

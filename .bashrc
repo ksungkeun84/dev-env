@@ -97,6 +97,6 @@ fi
 #if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 #    . /etc/bash_completion
 #fi
-export PATH=/root/miniconda3/bin:$HOME/.bin/:$PATH
+export PATH=$HOME/miniconda3/bin:$HOME/.bin/:$PATH
 alias vi='nvim.appimage'
 set -o vi

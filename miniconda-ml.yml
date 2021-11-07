@@ -3,6 +3,7 @@ channels:
   - defaults
   - anaconda
   - conda-forge
+  - ksungkeun84
 dependencies:
   - python=3.9
   - numpy
@@ -19,3 +20,4 @@ dependencies:
   - scons
   - rich
   - pyfiglet
+  - pyclibase
