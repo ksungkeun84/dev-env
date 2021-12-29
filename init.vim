@@ -6,6 +6,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 Plug 'tomasiser/vim-code-dark'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'pangloss/vim-javascript'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
@@ -103,6 +105,8 @@ let g:lightline = {
                     \ },
                     \ 'colorscheme': 'codedark',
                     \ }
+let g:airline_theme = 'codedark'
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " szw/vim-maximier

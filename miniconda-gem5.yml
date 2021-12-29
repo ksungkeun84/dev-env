@@ -15,3 +15,4 @@ dependencies:
   - neovim
   - six
   - scons
+  - gh
