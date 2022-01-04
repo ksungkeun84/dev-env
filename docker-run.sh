@@ -6,6 +6,7 @@ if [ ! -d "$DOCKER_HOME" ]; then
 fi
 username=`whoami`
 docker run --rm -i -t \
+    --name docker-${username} \
     --privileged \
     --user $UID:$GID \
     --workdir="/home/$USER" \
