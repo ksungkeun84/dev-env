@@ -5,7 +5,7 @@ channels:
   - conda-forge
   - ksungkeun84
 dependencies:
-  - python=3.9
+  - python=3.8
   - python-devtools
   - numpy
   - pydot
