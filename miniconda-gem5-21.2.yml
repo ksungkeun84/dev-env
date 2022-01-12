@@ -1,4 +1,4 @@
-name: gem5
+name: gem5-v21.2
 channels:
   - defaults
   - anaconda
