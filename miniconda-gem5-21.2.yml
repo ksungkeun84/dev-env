@@ -6,6 +6,7 @@ channels:
   - ksungkeun84
 dependencies:
   - python=3.9
+  - python-devtools
   - numpy
   - pydot
   - pandas
