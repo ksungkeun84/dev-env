@@ -37,6 +37,8 @@ class Setup(pyclibase.pyclibase):
 
         cmd = f'$HOME/miniconda3/bin/conda env create -f {dev_env}/miniconda-gem5.yml'
         super().execute_cmd(cmd)
+        cmd = f'$HOME/miniconda3/bin/conda env create -f {dev_env}/miniconda-gem5-21.2.yml'
+        super().execute_cmd(cmd)
         cmd = f'$HOME/miniconda3/bin/conda env create -f {dev_env}/miniconda-dcce.yml'
         super().execute_cmd(cmd)
         cmd = f'$HOME/miniconda3/bin/conda env create -f {dev_env}/miniconda-ml.yml'
