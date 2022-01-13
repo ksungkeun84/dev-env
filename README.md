@@ -10,7 +10,12 @@
 # Docker based Dev environment setup (NVim Enabled)
 ![Docker based Dev environment setup (NVim Enabled)](https://github.com/ksungkeun84/dev-env/blob/master/dev-env-demo.gif)
 
-## 1. Run the docker container.
+## 0. Clone the dev-env repo.
+```console
+git clone https://github.com/ksungkeun84/dev-env/
+```
+
+## 1. Run the docker container in dev-env directory.
 
 ```console
 ./docker-run.sh
