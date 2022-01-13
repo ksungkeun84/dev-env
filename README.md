@@ -10,33 +10,31 @@
 # Docker based Dev environment setup (NVim Enabled)
 ![Docker based Dev environment setup (NVim Enabled)](https://github.com/ksungkeun84/dev-env/blob/master/dev-env-demo.gif)
 
-## Setup dev-env
-Install pyclibase
+## 1. Run the docker container.
 
 ```console
-pip install -i https://test.pypi.org/simple/ pyclibase
+./docker-run.sh
 ```
 
-Run the setup.py
+## 2. Run the setup.py
 
 ```console
-username@xxx: python3 setup.py
+username@xxx: python3 setup.py -m docker
 ```
 
-## Setup Nvim in dev-env docker
+## 3. Setup Neovim
 
 ```console
-(host) username@xxx: ./docker-run.sh
-(docker) username@xxx: vi
+username@xxx: vi
 (command mode in vi) :PlugInstall
 ```
 
-## Initialize anaconda in dev-env docker
+## Re run the docker container to activate conda env.
 
 ```console
 (docker) username@xxx: conda init bash
 (docker) username@xxx: exit
 (host)   username@xxx: ./docker-run.sh
-(docker) username@xxx: conda activate gem5 
+(docker) username@xxx: conda activate gem5
 (gem5)   username@xxx:
 ```
