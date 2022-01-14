@@ -37,9 +37,8 @@ username@xxx: vi
 ## Re run the docker container to activate conda env.
 
 ```console
-(docker) username@xxx: conda init bash
 (docker) username@xxx: exit
 (host)   username@xxx: ./docker-run.sh
-(docker) username@xxx: conda activate gem5
-(gem5)   username@xxx:
+(docker) username@xxx: conda activate gem5-v21.2
+(gem5-v21.2)   username@xxx:
 ```
