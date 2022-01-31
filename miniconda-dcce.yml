@@ -3,6 +3,7 @@ channels:
   - defaults
   - anaconda
   - conda-forge
+  - conda-forge/label/cf202003
   - ksungkeun84
 dependencies:
   - python=3.9

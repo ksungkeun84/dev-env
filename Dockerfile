@@ -38,7 +38,10 @@ RUN apt-get install -y graphviz
 # Python
 ######################################
 RUN apt-get install -y python python-dev
+RUN apt-get install -y python-six
 RUN apt-get install -y python3 python3-dev
+RUN apt-get install -y python3-six 
+RUN apt-get install -y python-is-python3
 RUN apt-get install -y pip
 
 ######################################
@@ -64,12 +67,9 @@ RUN apt-get install -y protobuf-compiler
 RUN apt-get install -y libprotoc-dev 
 RUN apt-get install -y libgoogle-perftools-dev 
 RUN apt-get install -y swig
-RUN apt-get install -y libprotobuf-dev 
-RUN apt-get install -y protobuf-compiler 
-RUN apt-get install -y libgoogle-perftools-dev
-RUN apt-get install -y libgoogle-perftools-dev
-RUN apt-get install -y python-six
-
+RUN apt-get install -y libboost-all-dev
+RUN apt-get install -y pkg-config
+RUN apt-get install -y libpng-dev
 
 ######################################
 # Neo Vim
