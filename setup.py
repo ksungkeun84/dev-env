@@ -24,7 +24,7 @@ class Setup(pyclibase.pyclibase):
         with console.status("[bold green]Working on tasks...") as status:
 
             # download nvim
-            cmd = f'curl -fLo $HOME/.bin/nvim.appimage --create-dirs  https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage; chmod a+x $HOME/.bin/nvim.appimage'
+            cmd = f'curl -fLo $HOME/.bin/nvim.appimage --create-dirs  https://github.com/neovim/neovim/releases/download/v0.6.1/nvim.appimage; chmod a+x $HOME/.bin/nvim.appimage'
             console.log(f"Executing {cmd}")
             super().execute_cmd(cmd)
 
