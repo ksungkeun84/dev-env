@@ -32,7 +32,7 @@ RUN apt-get install -y libssl-dev
 RUN apt-get install -y libpcre2-dev
 RUN apt-get install -y zip
 RUN apt-get install -y graphviz
-
+RUN apt-get install -y xsel
 
 ######################################
 # Python

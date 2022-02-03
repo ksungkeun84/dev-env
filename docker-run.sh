@@ -13,6 +13,7 @@ docker run --rm -i -t \
     --volume $HOME:/home/${username}/host \
     --volume $PWD:/home/${username}/dev-env \
     --volume $PWD/$DOCKER_HOME:/home/${username} \
+    --volume /data:/home/${username}/data \
     --volume="/etc/group:/etc/group:ro" \
     --volume="/etc/passwd:/etc/passwd:ro" \
     --volume="/etc/shadow:/etc/shadow:ro" \
