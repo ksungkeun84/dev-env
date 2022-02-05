@@ -8,7 +8,8 @@
 ```
 
 # Docker based Dev environment setup (NVim Enabled)
-![Docker based Dev environment setup (NVim Enabled)](https://github.com/ksungkeun84/dev-env/blob/master/demo.mov)
+https://user-images.githubusercontent.com/58986949/115314310-805b2780-a1a7-11eb-8558-648a367ea231.mp4
+https://github.com/ksungkeun84/dev-env/blob/master/demo.mov
 
 
 ```
