@@ -10,35 +10,3 @@
 # Docker based Dev environment setup (NVim Enabled)
 ![Docker based Dev environment setup (NVim Enabled)](https://github.com/ksungkeun84/dev-env/blob/master/dev-env-demo.gif)
 
-## 0. Clone the dev-env repo.
-```console
-git clone https://github.com/ksungkeun84/dev-env/
-```
-
-## 1. Run the docker container in dev-env directory.
-
-```console
-./docker-run.sh
-```
-
-## 2. Run the setup.py
-
-```console
-username@xxx: python3 setup.py -m docker
-```
-
-## 3. Setup Neovim
-
-```console
-username@xxx: vi
-(command mode in vi) :PlugInstall
-```
-
-## Re run the docker container to activate conda env.
-
-```console
-(docker) username@xxx: exit
-(host)   username@xxx: ./docker-run.sh
-(docker) username@xxx: conda activate gem5-v21.2
-(gem5-v21.2)   username@xxx:
-```

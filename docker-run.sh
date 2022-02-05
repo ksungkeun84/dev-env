@@ -5,9 +5,10 @@ if [ ! -d "$DOCKER_HOME" ]; then
     cp setup.py $DOCKER_HOME
 fi
 username=`whoami`
+    #--name docker-${username} \
 docker run --rm -i -t \
-    --name docker-${username} \
     --privileged \
+    --env TERM=xterm-256color \
     --user $UID:$GID \
     --workdir="/home/$USER" \
     --volume $HOME:/home/${username}/host \
