@@ -8,5 +8,14 @@
 ```
 
 # Docker based Dev environment setup (NVim Enabled)
-![Docker based Dev environment setup (NVim Enabled)](https://github.com/ksungkeun84/dev-env/blob/master/dev-env-demo.gif)
 
+```
+./install.sh
+```
+Press "N" not to set zsh.
+
+```
+./setup.sh
+```
+
+Relogin docker after above two commands.
