@@ -2,7 +2,9 @@
 DOCKER_HOME='docker-home'
 if [ ! -d "$DOCKER_HOME" ]; then
     mkdir $DOCKER_HOME
-    cp setup.py $DOCKER_HOME
+    cp setup.sh $DOCKER_HOME
+    cp reset.sh $DOCKER_HOME
+    cp oh-my-zsh-install.sh $DOCKER_HOME
 fi
 username=`whoami`
     #--name docker-${username} \

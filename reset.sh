@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-rm -rf .zshrc .oh-my-zsh miniconda3 .bin .conda .config .cache .vim .local
+rm -rf $HOME/.zshrc $HOME/.oh-my-zsh $HOME/miniconda3 $HOME/.bin $HOME/.conda $HOME/.config $HOME/.cache $HOME/.vim $HOME/.local

@@ -1,11 +1,37 @@
 FROM ubuntu:20.04
-MAINTAINER Sungkeun Kim <ksungkeun84@tamu.edu>
+MAINTAINER Sungkeun Kim <sungkeun.kim@icloud.com>
 
 # Disable prompt during package installation
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update
 RUN echo "root:1234" | chpasswd
+######################################
+# Locale
+######################################
+RUN apt-get update
+RUN apt-get install -y locales locales-all
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+######################################
+# Python
+######################################
+RUN apt-get install -y python python-dev
+RUN apt-get install -y python3 python3-dev --fix-missing
+RUN apt-get install -y pip
+
+######################################
+# For pypi packaging
+######################################
+RUN pip3 install --upgrade build
+RUN pip3 install --upgrade twine
+RUN pip3 install rich
+RUN pip3 install pyfiglet
+RUN pip3 install pyclibase
+# plug.vim
+#RUN pip3 install pynvim
+
+
 ######################################
 # Utilities
 ######################################
@@ -34,25 +60,6 @@ RUN apt-get install -y zip
 RUN apt-get install -y graphviz
 RUN apt-get install -y xsel
 
-######################################
-# Python
-######################################
-RUN apt-get install -y python python-dev
-RUN apt-get install -y python-six
-RUN apt-get install -y python3 python3-dev
-RUN apt-get install -y python3-six 
-RUN apt-get install -y python-is-python3
-RUN apt-get install -y pip
-
-######################################
-# For pypi packaging
-######################################
-RUN pip3 install --upgrade build
-RUN pip3 install --upgrade twine
-RUN pip3 install rich
-RUN pip3 install pyfiglet
-RUN pip3 install pyclibase
-
 
 ######################################
 # gem5
@@ -77,25 +84,14 @@ RUN apt-get install -y libpng-dev
 RUN apt-get update
 RUN apt-get install -y vim-scripts
 
-# plug.vim
-RUN pip3 install pynvim
-
 # for /dev/fuse
 RUN apt-get install -y fuse
 
 ######################################
 # nodejs
 ######################################
-#RUN apt-get update
-#ENV DEBIAN_FRONTEND=noninteractive
-#RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-#RUN export NVM_DIR="$HOME/.nvm"
-#ENV NVIM_DIR /home/ubuntu/.nvim
-#RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#RUN [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
-#RUN nvm install nodes
-#RUN apt-get install -yq nodejs
-#RUN apt-get install -yq npm
+RUN apt-get install -yq nodejs
+RUN apt-get install -yq npm
 
 ######################################
 # apt-get clean
@@ -130,11 +126,16 @@ RUN echo "vrc ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/custom
 RUN echo "jp53456 ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/custom
 
 ######################################
+# zsh
+######################################
+RUN apt-get install -y zsh
+RUN apt-get install -y powerline 
+RUN apt-get install -y fonts-powerline
+
+######################################
 # Set up for pintool
 ######################################
 #RUN echo 0 > /proc/sys/kernel/yama/ptrace_scope
 #RUN chmod a+w /proc/sys/kernel/yama/ptrace_scope
 
-
-CMD bash
-
+CMD zsh

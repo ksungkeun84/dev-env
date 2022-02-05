@@ -8,6 +8,8 @@
 ```
 
 # Docker based Dev environment setup (NVim Enabled)
+![Docker based Dev environment setup (NVim Enabled)](https://github.com/ksungkeun84/dev-env/blob/master/demo.mov)
+
 
 ```
 ./install.sh
