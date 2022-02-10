@@ -7,9 +7,9 @@ if [ ! -d "$DOCKER_HOME" ]; then
     cp oh-my-zsh-install.sh $DOCKER_HOME
 fi
 username=`whoami`
-    #--name docker-${username} \
 docker run --rm -i -t \
     --privileged \
+    --name docker-${username} \
     --env TERM=xterm-256color \
     --user $UID:$GID \
     --workdir="/home/$USER" \
