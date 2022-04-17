@@ -22,9 +22,9 @@ sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting
 ########################################
 #curl -fLo $HOME/.bin/nvim.appimage --create-dirs  https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 #chmod a+x $HOME/.bin/nvim.appimage
-#git clone https://github.com/LunarVim/Neovim-from-scratch.git ~/.config/nvim
-wget https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
 tar xzvf nvim-linux64.tar.gz
+git clone https://github.com/LunarVim/Neovim-from-scratch.git ~/.config/nvim
 echo "#---------------------- dev-evn ---------------" >> $HOME/.zshrc
 echo "alias vi=\"$HOME/nvim-linux64/bin/nvim\"" >> $HOME/.zshrc
 echo "set -o vi" >> $HOME/.zshrc
