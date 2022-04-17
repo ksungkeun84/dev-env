@@ -4,7 +4,6 @@ if [ ! -d "$DOCKER_HOME" ]; then
     mkdir $DOCKER_HOME
     cp setup.sh $DOCKER_HOME
     cp reset.sh $DOCKER_HOME
-    cp oh-my-zsh-install.sh $DOCKER_HOME
 fi
 username=`whoami`
 docker run --rm -i -t \
