@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ubuntu:20.04
+FROM ubuntu:20.04
 MAINTAINER Sungkeun Kim <sungkeun.kim@icloud.com>
 
 # Disable prompt during package installation
@@ -28,9 +28,6 @@ RUN pip3 install --upgrade twine
 RUN pip3 install rich
 RUN pip3 install pyfiglet
 RUN pip3 install pyclibase
-# plug.vim
-#RUN pip3 install pynvim
-
 
 ######################################
 # Utilities
@@ -77,6 +74,14 @@ RUN apt-get install -y swig
 RUN apt-get install -y libboost-all-dev
 RUN apt-get install -y pkg-config
 RUN apt-get install -y libpng-dev
+# If gem5 v19 does not work, remove the following apps
+RUN apt-get install -y scons
+RUN apt-get install -y python3-six
+RUN apt-get install -y python-is-python3
+RUN apt-get install -y libhdf5-serial-dev
+RUN apt-get install -y python3-pydot
+RUN apt-get install -y python3-venv
+RUN apt-get install -y pkg-config
 
 ######################################
 # Neo Vim
@@ -92,14 +97,6 @@ RUN apt-get install -y fuse
 ######################################
 RUN apt-get install -yq nodejs
 RUN apt-get install -yq npm
-
-######################################
-# apt-get clean
-######################################
-RUN apt-get clean
-RUN apt-get autoremove
-RUN apt-get clean
-RUN apt-get autoclean
 
 ######################################
 # Install older version of gcc/g++
@@ -120,10 +117,10 @@ RUN apt-get autoclean
 ######################################
 # Assign users to users.d
 ######################################
-#RUN touch /etc/sudoers.d/custom
-#RUN echo "sungkeun ALL=(ALL) ALL" >> /etc/sudoers.d/custom
-#RUN echo "vrc ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/custom
-#RUN echo "jp53456 ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/custom
+RUN touch /etc/sudoers.d/custom
+RUN echo "sungkeun ALL=(ALL) ALL" >> /etc/sudoers.d/custom
+RUN echo "vrc ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/custom
+RUN echo "jp53456 ALL=(ALL) /usr/bin/update-alternatives" >> /etc/sudoers.d/custom
 
 ######################################
 # zsh
@@ -137,5 +134,22 @@ RUN apt-get install -y fonts-powerline
 ######################################
 #RUN echo 0 > /proc/sys/kernel/yama/ptrace_scope
 #RUN chmod a+w /proc/sys/kernel/yama/ptrace_scope
+
+RUN mkdir /SPEC2017_BINS
+RUN mkdir /SPEC2017_INPUTS
+COPY SPEC2017_BINS/ /SPEC2017_BINS/
+COPY SPEC2017_INPUTS/ /SPEC2017_INPUTS/
+
+RUN chmod -R 755 /SPEC2017_BINS/
+RUN chmod -R 755 /SPEC2017_INPUTS/
+
+######################################
+# apt-get clean
+######################################
+RUN apt-get clean
+#RUN apt-get autoremove
+#RUN apt-get clean
+RUN apt-get autoclean
+
 
 CMD zsh
