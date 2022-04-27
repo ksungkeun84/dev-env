@@ -1,15 +1,24 @@
 #!/bin/bash
+
 DOCKER_HOME='docker-home'
 if [ ! -d "$DOCKER_HOME" ]; then
     mkdir $DOCKER_HOME
     cp setup.sh $DOCKER_HOME
     cp reset.sh $DOCKER_HOME
-    cp oh-my-zsh-install.sh $DOCKER_HOME
 fi
+
 username=`whoami`
+container_name=do-not-touch-${username}
+while getopts u: flag
+do
+    case "${flag}" in
+        u) container_name=${OPTARG};;
+    esac
+done
+
 docker run --rm -i -t \
     --privileged \
-    --name docker-${username} \
+    --name ${container_name} \
     --env TERM=xterm-256color \
     --user $UID:$GID \
     --workdir="/home/$USER" \

@@ -7,6 +7,7 @@ if [ ! -d "$DOCKER_HOME" ]; then
 fi
 docker run --rm -i -t \
     --privileged \
+    --name docker-${username} \
     --env TERM=xterm-256color \
     --workdir="/root" \
     --volume $HOME:/root/host \
