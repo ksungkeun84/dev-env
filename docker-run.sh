@@ -4,7 +4,6 @@ DOCKER_HOME='docker-home'
 if [ ! -d "$DOCKER_HOME" ]; then
     mkdir $DOCKER_HOME
     cp setup.sh $DOCKER_HOME
-    cp reset.sh $DOCKER_HOME
 fi
 
 username=`whoami`
