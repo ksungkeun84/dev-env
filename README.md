@@ -23,3 +23,6 @@ Press "N" not to set zsh.
 ```
 
 Relogin docker after above two commands.
+
+# Useful links
+- [Using Latex with NeoVim](https://www.ejmastnak.com)
